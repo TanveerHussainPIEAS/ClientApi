@@ -1,0 +1,14 @@
+
+SDK:
+https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.101-windows-x64-installer
+
+Data Base: ClientDB
+
+dotnet ef dbcontext scaffold "Data Source=localhost;Initial Catalog=ClientDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;" Microsoft.EntityFrameworkCore.SqlServer --output-dir DBContext -f
+
+
+insert into UserTypes values('Admin',0,GETDATE(),GETDATE(),null,null,null)
+
+insert into UserPermissions values(1,0,0,0,0,0,0,0,0,0,0,0,0,0,GETDATE(),GETDATE(),null,null,null,null)
+
+

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using ClientApi.DBContext;
+using ClientApi.DTO;
 
 namespace ClientApi.Infrastructure.AutoMapper
 {
@@ -7,7 +9,7 @@ namespace ClientApi.Infrastructure.AutoMapper
         public MappingProfile()
         {
 
-            //CreateMap<ProductDto, Product>().ReverseMap();
+            CreateMap<UserDto, User>().ReverseMap();
             //CreateMap<ProductTypeDto, ProductType>().ReverseMap();
 
             //CreateMap<ProductImageDto, ProductImage>().ReverseMap();
