@@ -8,6 +8,7 @@ namespace ClientApi.Infrastructure.Configurations
         {
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProductService, ProductService>();
+            // Add new Service here
         }
     }
 }
