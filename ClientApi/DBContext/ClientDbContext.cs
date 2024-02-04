@@ -53,10 +53,23 @@ public partial class ClientDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PK_Product");
 
+            entity.Property(e => e.Brand).HasMaxLength(300);
             entity.Property(e => e.Code).HasMaxLength(300);
+            entity.Property(e => e.Color).HasMaxLength(300);
+            entity.Property(e => e.Condition).HasMaxLength(300);
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.IsEbayStore).HasColumnName("IsEBayStore");
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Name).HasMaxLength(300);
+            entity.Property(e => e.RentPrice16Days).HasMaxLength(300);
+            entity.Property(e => e.RentPrice30Days).HasMaxLength(300);
+            entity.Property(e => e.RentPrice4Days).HasMaxLength(300);
+            entity.Property(e => e.RentPrice8Days).HasMaxLength(300);
+            entity.Property(e => e.Rrp)
+                .HasMaxLength(300)
+                .HasColumnName("RRP");
+            entity.Property(e => e.SellPrice).HasMaxLength(300);
+            entity.Property(e => e.Size).HasMaxLength(300);
 
             entity.HasOne(d => d.Type).WithMany(p => p.Products)
                 .HasForeignKey(d => d.TypeId)

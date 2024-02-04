@@ -11,4 +11,5 @@ insert into UserTypes values('Admin',0,GETDATE(),GETDATE(),null,null,null)
 
 insert into UserPermissions values(1,0,0,0,0,0,0,0,0,0,0,0,0,0,GETDATE(),GETDATE(),null,null,null,null)
 
+insert into ProductTypes values('Sell',0,GETDATE(),GETDATE(),null,null,null,null)
 

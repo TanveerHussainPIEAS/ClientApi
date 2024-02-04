@@ -11,15 +11,15 @@ public partial class ProductImage
 
     public string? Name { get; set; }
 
-    public string? Url { get; set; }
+    public string Url { get; set; } = null!;
 
     public string? Details { get; set; }
 
     public bool Deleted { get; set; }
 
-    public DateTimeOffset CreatedDate { get; set; }
+    public DateTimeOffset? CreatedDate { get; set; }
 
-    public DateTimeOffset ModifiedDate { get; set; }
+    public DateTimeOffset? ModifiedDate { get; set; }
 
     public DateTimeOffset? DeletedDate { get; set; }
 

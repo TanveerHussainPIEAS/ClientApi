@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClientApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : CustomControllerBase
     {
@@ -32,11 +32,25 @@ namespace ClientApi.Controllers
 
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetTestLib([FromRoute] int userId)
+        public async Task<IActionResult> GetUser([FromRoute] int userId)
         {
             try
             {
                 var result = await _userService.GetUser(userId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorResult();
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> GetUserByEmail([FromBody] LoginUserDto loginUserDto)
+        {
+            try
+            {
+                var result = await _userService.LoginByEmailOrUserName(loginUserDto);
                 return OkResult(result);
             }
             catch (Exception ex)

@@ -3,6 +3,7 @@ using ClientApi.DBContext;
 using ClientApi.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using BCrypt.Net;
 
 namespace ClientApi.Services
 {
@@ -23,6 +24,20 @@ namespace ClientApi.Services
             return userDto;
         }
 
+        public async Task<UserDto> LoginByEmailOrUserName(LoginUserDto loginUserDto)
+        {
+            var user = await _context.Users
+                .Where(u => (u.Email == loginUserDto.Email || u.UserName == loginUserDto.UserName) && !u.Deleted)
+                .FirstOrDefaultAsync();
+
+            if (user != null && BCrypt.Net.BCrypt.Verify(loginUserDto.Password, user.Password))
+            {
+                var userDto = mapper.Map<UserDto>(user);
+                return userDto;
+            }
+            return null;
+        }
+
         public async Task<List<UserDto>> GetUsers()
         {
             var user = await _context.Users.ToListAsync();
@@ -38,7 +53,7 @@ namespace ClientApi.Services
             user.PermissionId = userDto.PermissionId;
             user.Name = userDto.Name;
             user.UserName = userDto.UserName;
-            user.Password = userDto.Password;
+            user.Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password);
             user.Email = userDto.Email;
             user.Address = userDto.Address;
             user.PhoneNumber = userDto.PhoneNumber;
