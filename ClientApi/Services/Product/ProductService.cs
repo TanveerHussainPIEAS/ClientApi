@@ -19,9 +19,21 @@ namespace ClientApi.Services
         }
         public async Task<ProductDto> GetProduct(int userId)
         {
-            var user = await _context.Users.Where(u => u.Id == userId).FirstOrDefaultAsync();
+            var user = await _context.Products.Where(u => u.Id == userId).FirstOrDefaultAsync();
             var userDto = mapper.Map<ProductDto>(user);
             return userDto;
+        }
+        
+        public async Task<bool> DeteleProduct(int proId)
+        {
+            var isDeleted = false;
+            var product = await _context.Products.Where(u => u.Id == proId).FirstOrDefaultAsync();
+            
+            product.Deleted=true;
+            product.DeletedDate = DateTime.Now;
+            _context.SaveChanges();
+            isDeleted = true;
+            return isDeleted;
         }
 
         public async Task<List<ProductDto>> GetProducts()

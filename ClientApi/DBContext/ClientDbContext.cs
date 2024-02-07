@@ -19,6 +19,8 @@ public partial class ClientDbContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+
     public virtual DbSet<ProductImage> ProductImages { get; set; }
 
     public virtual DbSet<ProductType> ProductTypes { get; set; }
@@ -71,10 +73,23 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.SellPrice).HasMaxLength(300);
             entity.Property(e => e.Size).HasMaxLength(300);
 
+            entity.HasOne(d => d.Category).WithMany(p => p.Products)
+                .HasForeignKey(d => d.CategoryId)
+                .HasConstraintName("FK_Product_ProductCategory");
+
             entity.HasOne(d => d.Type).WithMany(p => p.Products)
                 .HasForeignKey(d => d.TypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Product_ProductType");
+        });
+
+        modelBuilder.Entity<ProductCategory>(entity =>
+        {
+            entity.ToTable("ProductCategory");
+
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.Type).HasMaxLength(300);
         });
 
         modelBuilder.Entity<ProductImage>(entity =>

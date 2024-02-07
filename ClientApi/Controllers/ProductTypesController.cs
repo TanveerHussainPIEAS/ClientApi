@@ -6,23 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 namespace ClientApi.Controllers
 {
 
-    [Route("api/products")]
+    [Route("api/product-types")]
     [ApiController]
-    public class ProductsController : CustomControllerBase
+    public class ProductTypesController : CustomControllerBase
     {
-        private readonly IProductService _productService;
-        public ProductsController(IProductService productService)
+        private readonly IProductTpeService _productTypeService;
+        public ProductTypesController(IProductTpeService productTypeService)
         {
-            _productService = productService;
+            _productTypeService = productTypeService;
         }
 
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProductTypes()
         {
             try
             {
-                var result = await _productService.GetProducts();
+                var result = await _productTypeService.GetProductTypes();
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -32,12 +32,12 @@ namespace ClientApi.Controllers
         }
 
 
-        [HttpGet("{productId}")]
-        public async Task<IActionResult> GetProduct([FromRoute] int productId)
+        [HttpGet("{productTypeId}")]
+        public async Task<IActionResult> GetProductType([FromRoute] int productTypeId)
         {
             try
             {
-                var result = await _productService.GetProduct(productId);
+                var result = await _productTypeService.GetProductType(productTypeId);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -46,12 +46,12 @@ namespace ClientApi.Controllers
             }
         }
 
-        [HttpDelete("{productId}")]
-        public async Task<IActionResult> DeteleProduct([FromRoute] int productId)
+        [HttpDelete("{productTypeId}")]
+        public async Task<IActionResult> DeteleProductType([FromRoute] int productTypeId)
         {
             try
             {
-                var result = await _productService.DeteleProduct(productId);
+                var result = await _productTypeService.DeteleProductType(productTypeId);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -62,11 +62,11 @@ namespace ClientApi.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> SaveProduct([FromBody] ProductDto productDto)
+        public async Task<IActionResult> SaveProductType([FromBody] ProductTypeDto productDto)
         {
             try
             {
-                var result = await _productService.SaveProduct(productDto);
+                var result = await _productTypeService.SaveProductType(productDto);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -76,11 +76,11 @@ namespace ClientApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateProduct([FromBody] ProductDto productDto)
+        public async Task<IActionResult> UpdateProductType([FromBody] ProductTypeDto productDto)
         {
             try
             {
-                var result = await _productService.UpdateProduct(productDto);
+                var result = await _productTypeService.UpdateProductType(productDto);
                 return OkResult(result);
             }
             catch (Exception ex)

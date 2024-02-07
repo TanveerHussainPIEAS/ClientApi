@@ -9,6 +9,8 @@ public partial class Product
 
     public int TypeId { get; set; }
 
+    public int? CategoryId { get; set; }
+
     public string Name { get; set; } = null!;
 
     public string Size { get; set; } = null!;
@@ -50,6 +52,8 @@ public partial class Product
     public int? ModifiedBy { get; set; }
 
     public int? CreatedBy { get; set; }
+
+    public virtual ProductCategory? Category { get; set; }
 
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 

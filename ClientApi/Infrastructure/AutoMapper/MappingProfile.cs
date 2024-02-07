@@ -12,6 +12,8 @@ namespace ClientApi.Infrastructure.AutoMapper
             CreateMap<UserDto, User>().ReverseMap();
             CreateMap<ProductImageDto, ProductImage>().ReverseMap();
             CreateMap<ProductDto, Product>().ReverseMap();
+            CreateMap<ProductTypeDto, ProductType>().ReverseMap();
+            CreateMap<ProductCategoryDto, ProductCategory>().ReverseMap();
             //CreateMap<ProductTypeDto, ProductType>().ReverseMap();
 
             //CreateMap<ProductImageDto, ProductImage>().ReverseMap();
