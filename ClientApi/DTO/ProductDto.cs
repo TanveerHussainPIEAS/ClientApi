@@ -8,6 +8,10 @@ namespace ClientApi.DTO
 
         public int TypeId { get; set; }
 
+        public int? CategoryId { get; set; }
+
+        public int? DesignerId { get; set; }
+
         public string Name { get; set; } = null!;
 
         public string Size { get; set; } = null!;
@@ -36,21 +40,13 @@ namespace ClientApi.DTO
 
         public bool IsEbayStore { get; set; }
 
-        public bool Deleted { get; set; }
-
-        public DateTimeOffset CreatedDate { get; set; }
-
-        public DateTimeOffset ModifiedDate { get; set; }
-
-        public DateTimeOffset? DeletedDate { get; set; }
-
         public int? DeletedBy { get; set; }
 
         public int? ModifiedBy { get; set; }
 
         public int? CreatedBy { get; set; }
 
-        public List<ProductImageDto> ProductImages { get; set; }
+        public  ICollection<ProductImageDto> ProductImages { get; set; } 
 
     }
 

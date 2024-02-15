@@ -11,6 +11,8 @@ public partial class Product
 
     public int? CategoryId { get; set; }
 
+    public int? DesignerId { get; set; }
+
     public string Name { get; set; } = null!;
 
     public string Size { get; set; } = null!;
@@ -54,6 +56,8 @@ public partial class Product
     public int? CreatedBy { get; set; }
 
     public virtual ProductCategory? Category { get; set; }
+
+    public virtual ProductDesigner? Designer { get; set; }
 
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 

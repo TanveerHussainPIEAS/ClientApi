@@ -91,11 +91,6 @@ namespace ClientApi.Services
                 product.ModifiedDate = DateTime.Now;
                 product.Deleted = false;
 
-                // Update ProductImages
-                // Assuming ProductImages is a list of ProductImage entities in the Product entity
-                // You may need to adjust this part based on your actual data model
-                // Also, make sure to handle adding, updating, and deleting ProductImages accordingly
-                // product.ProductImages = mapper.Map<List<ProductImage>>(productDto.ProductImages);
 
                 await _context.SaveChangesAsync();
                 isUpdated = true;

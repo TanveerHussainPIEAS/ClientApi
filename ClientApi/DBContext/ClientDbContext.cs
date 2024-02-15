@@ -21,6 +21,8 @@ public partial class ClientDbContext : DbContext
 
     public virtual DbSet<ProductCategory> ProductCategories { get; set; }
 
+    public virtual DbSet<ProductDesigner> ProductDesigners { get; set; }
+
     public virtual DbSet<ProductImage> ProductImages { get; set; }
 
     public virtual DbSet<ProductType> ProductTypes { get; set; }
@@ -33,7 +35,7 @@ public partial class ClientDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=ClientDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
+        => optionsBuilder.UseSqlServer("Data Source=CN-175;Initial Catalog=ClientDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -77,6 +79,10 @@ public partial class ClientDbContext : DbContext
                 .HasForeignKey(d => d.CategoryId)
                 .HasConstraintName("FK_Product_ProductCategory");
 
+            entity.HasOne(d => d.Designer).WithMany(p => p.Products)
+                .HasForeignKey(d => d.DesignerId)
+                .HasConstraintName("FK_Product_ProductDesigner");
+
             entity.HasOne(d => d.Type).WithMany(p => p.Products)
                 .HasForeignKey(d => d.TypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -90,6 +96,15 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Type).HasMaxLength(300);
+        });
+
+        modelBuilder.Entity<ProductDesigner>(entity =>
+        {
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.Deleted).HasDefaultValueSql("((0))");
+            entity.Property(e => e.Detail).HasMaxLength(900);
+            entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.Name).HasMaxLength(300);
         });
 
         modelBuilder.Entity<ProductImage>(entity =>
