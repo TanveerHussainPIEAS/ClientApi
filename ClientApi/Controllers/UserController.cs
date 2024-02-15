@@ -37,6 +37,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _userService.GetUser(userId);
+                if (result == null)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -51,6 +55,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _userService.LoginByEmailOrUserName(loginUserDto);
+                if (result == null) 
+                { 
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -65,6 +73,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _userService.SaveUser(userDto);
+                if (result == false)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -79,6 +91,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _userService.UpdateUser(userDto);
+                if (result == false)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)

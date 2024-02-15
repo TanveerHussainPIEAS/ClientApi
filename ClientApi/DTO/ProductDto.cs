@@ -50,7 +50,7 @@ namespace ClientApi.DTO
 
         public int? CreatedBy { get; set; }
 
-        //public List<ProductImageDto> ProductImages { get; set; }
+        public List<ProductImageDto> ProductImages { get; set; }
 
     }
 

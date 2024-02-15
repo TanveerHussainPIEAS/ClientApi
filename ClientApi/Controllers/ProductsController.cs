@@ -38,6 +38,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _productService.GetProduct(productId);
+                if (result == null)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -52,6 +56,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _productService.DeteleProduct(productId);
+                if (result == false)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -67,6 +75,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _productService.SaveProduct(productDto);
+                if (result == false)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -81,6 +93,10 @@ namespace ClientApi.Controllers
             try
             {
                 var result = await _productService.UpdateProduct(productDto);
+                if (result == false)
+                {
+                    return ServerErrorResult();
+                }
                 return OkResult(result);
             }
             catch (Exception ex)

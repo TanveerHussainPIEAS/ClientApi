@@ -52,6 +52,12 @@ namespace ClientApi.Services
             var isSaved = false;
             product.CreatedDate = DateTime.Now;
             product.Deleted = false;
+            product.DeletedDate = null;
+            foreach(var p in product.ProductImages)
+            {
+                p.Deleted = false;
+                p.DeletedDate = null;
+            }
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             isSaved = true;
