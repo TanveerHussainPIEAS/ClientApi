@@ -23,13 +23,13 @@ namespace ClientApi.Services
             var userDto = mapper.Map<ProductDto>(user);
             return userDto;
         }
-        
+
         public async Task<bool> DeteleProduct(int proId)
         {
             var isDeleted = false;
             var product = await _context.Products.Where(u => u.Id == proId).FirstOrDefaultAsync();
-            
-            product.Deleted=true;
+
+            product.Deleted = true;
             product.DeletedDate = DateTime.Now;
             _context.SaveChanges();
             isDeleted = true;
@@ -40,6 +40,7 @@ namespace ClientApi.Services
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
+                .Where(p => p.Deleted == false)
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
@@ -50,7 +51,7 @@ namespace ClientApi.Services
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
-                .Where(p=>p.CategoryId==catogeryId)
+                .Where(p => p.CategoryId == catogeryId && p.Deleted == false)
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
@@ -61,7 +62,7 @@ namespace ClientApi.Services
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
-                .Where(p => p.DesignerId == designerId)
+                .Where(p => p.DesignerId == designerId && p.Deleted == false)
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
@@ -72,7 +73,7 @@ namespace ClientApi.Services
         {
             var products = await _context.Products
                  .Include(p => p.ProductImages)
-                 .Where(p => p.TypeId == typeId)
+                 .Where(p => p.TypeId == typeId && p.Deleted == false)
                  .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
@@ -83,7 +84,7 @@ namespace ClientApi.Services
         {
             var products = await _context.Products
                  .Include(p => p.ProductImages)
-                 .Where(p => p.EditId == editId)
+                 .Where(p => p.EditId == editId && p.Deleted == false)
                  .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
@@ -97,7 +98,7 @@ namespace ClientApi.Services
             product.CreatedDate = DateTime.Now;
             product.Deleted = false;
             product.DeletedDate = null;
-            foreach(var p in product.ProductImages)
+            foreach (var p in product.ProductImages)
             {
                 p.Deleted = false;
                 p.DeletedDate = null;

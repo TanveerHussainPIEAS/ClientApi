@@ -39,6 +39,7 @@ namespace ClientApi.Services
         public async Task<List<ProductTypeDto>> GetProductTypes()
         {
             var type = await _context.ProductTypes
+                .Where(p => p.Deleted == false)
                 .ToListAsync();
 
             var typeDto = mapper.Map<List<ProductTypeDto>>(type);

@@ -28,7 +28,9 @@ namespace ClientApi.Services
 
         public async Task<List<ProductEditDto>> GetProductEdits()
         {
-            var productEdits = await _context.ProductEdits.ToListAsync();
+            var productEdits = await _context.ProductEdits
+                .Where(p => p.Deleted == false)
+                .ToListAsync();
             return _mapper.Map<List<ProductEditDto>>(productEdits);
         }
 

@@ -28,7 +28,9 @@ namespace ClientApi.Services
 
         public async Task<List<ProductCategoryDto>> GetProductCategories()
         {
-            var categories = await _context.ProductCategories.ToListAsync();
+            var categories = await _context.ProductCategories
+                .Where(p => p.Deleted == false)
+                .ToListAsync();
             return _mapper.Map<List<ProductCategoryDto>>(categories);
         }
 

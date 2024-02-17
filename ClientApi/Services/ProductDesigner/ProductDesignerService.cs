@@ -69,7 +69,9 @@ namespace ClientApi.Services
 
         public async Task<List<ProductDesignerDto>> GetAllProductDesigners()
         {
-            var designers = await _context.ProductDesigners.ToListAsync();
+            var designers = await _context.ProductDesigners
+                .Where(p => p.Deleted == false)
+                .ToListAsync();
             return _mapper.Map<List<ProductDesignerDto>>(designers);
         }
     }
