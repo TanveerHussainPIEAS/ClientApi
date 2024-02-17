@@ -38,12 +38,56 @@ namespace ClientApi.Services
 
         public async Task<List<ProductDto>> GetProducts()
         {
-            var user = await _context.Products
+            var products = await _context.Products
                 .Include(p => p.ProductImages)
                 .ToListAsync();
 
-            var usersDto = mapper.Map<List<ProductDto>>(user);
-            return usersDto;
+            var productsDto = mapper.Map<List<ProductDto>>(products);
+            return productsDto;
+        }
+
+        public async Task<List<ProductDto>> GetProductsByCatogeryId(int catogeryId)
+        {
+            var products = await _context.Products
+                .Include(p => p.ProductImages)
+                .Where(p=>p.CategoryId==catogeryId)
+                .ToListAsync();
+
+            var productsDto = mapper.Map<List<ProductDto>>(products);
+            return productsDto;
+        }
+
+        public async Task<List<ProductDto>> GetProductsByDesignerId(int designerId)
+        {
+            var products = await _context.Products
+                .Include(p => p.ProductImages)
+                .Where(p => p.DesignerId == designerId)
+                .ToListAsync();
+
+            var productsDto = mapper.Map<List<ProductDto>>(products);
+            return productsDto;
+        }
+
+        public async Task<List<ProductDto>> GetProductsByTypeId(int typeId)
+        {
+            var products = await _context.Products
+                 .Include(p => p.ProductImages)
+                 .Where(p => p.TypeId == typeId)
+                 .ToListAsync();
+
+            var productsDto = mapper.Map<List<ProductDto>>(products);
+            return productsDto;
+        }
+
+        public async Task<List<ProductDto>> GetProductsByEditId(int editId)
+        {
+            var products = await _context.Products
+                 .Include(p => p.ProductImages)
+                 .Where(p => p.EditId == editId)
+                 .ToListAsync();
+
+            var productsDto = mapper.Map<List<ProductDto>>(products);
+            return productsDto;
         }
 
         public async Task<bool> SaveProduct(ProductDto productDto)

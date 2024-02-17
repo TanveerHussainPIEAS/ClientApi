@@ -31,6 +31,63 @@ namespace ClientApi.Controllers
             }
         }
 
+        [HttpGet("catogery/{catogeryId}")]
+        public async Task<IActionResult> GetProductsByCatogeryId(int catogeryId)
+        {
+            try
+            {
+                var result = await _productService.GetProductsByCatogeryId(catogeryId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorResult();
+            }
+        }
+
+        [HttpGet("designer/{designerId}")]
+        public async Task<IActionResult> GetProductsByDesignerId(int designerId)
+        {
+            try
+            {
+                var result = await _productService.GetProductsByDesignerId(designerId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorResult();
+            }
+        }
+
+        [HttpGet("type/{typeId}")]
+        public async Task<IActionResult> GetProductsByTypeId(int typeId)
+        {
+            try
+            {
+                var result = await _productService.GetProductsByTypeId(typeId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorResult();
+            }
+        }
+
+        [HttpGet("edit/{editId}")]
+        public async Task<IActionResult> GetProductsByEditId(int editId)
+        {
+            try
+            {
+                var result = await _productService.GetProductsByEditId(editId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorResult();
+            }
+        }
+
+
 
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetProduct([FromRoute] int productId)
