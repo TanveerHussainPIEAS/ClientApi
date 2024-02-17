@@ -13,7 +13,11 @@ public partial class Product
 
     public int? DesignerId { get; set; }
 
+    public int? EditId { get; set; }
+
     public string Name { get; set; } = null!;
+
+    public string? Price { get; set; }
 
     public string Size { get; set; } = null!;
 
@@ -58,6 +62,8 @@ public partial class Product
     public virtual ProductCategory? Category { get; set; }
 
     public virtual ProductDesigner? Designer { get; set; }
+
+    public virtual ProductEdit? Edit { get; set; }
 
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 

@@ -3,21 +3,15 @@ using System.Collections.Generic;
 
 namespace ClientApi.DBContext;
 
-public partial class ProductImage
+public partial class ProductEdit
 {
     public int Id { get; set; }
 
-    public int ProductId { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string? Name { get; set; }
+    public string? Detail { get; set; }
 
-    public string Url { get; set; } = null!;
-
-    public string? Details { get; set; }
-
-    public bool IsMainImage { get; set; }
-
-    public bool Deleted { get; set; }
+    public bool? Deleted { get; set; }
 
     public DateTimeOffset? CreatedDate { get; set; }
 
@@ -31,5 +25,5 @@ public partial class ProductImage
 
     public int? CreatedBy { get; set; }
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }

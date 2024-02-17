@@ -11,6 +11,7 @@ namespace ClientApi.DTO
         public int? CategoryId { get; set; }
 
         public int? DesignerId { get; set; }
+        public int? EditId { get; set; }
 
         public string Name { get; set; } = null!;
 
@@ -23,6 +24,7 @@ namespace ClientApi.DTO
         public string Condition { get; set; } = null!;
 
         public string? SellPrice { get; set; }
+        public string? Price { get; set; }
 
         public string? RentPrice4Days { get; set; }
 
