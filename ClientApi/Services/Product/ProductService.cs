@@ -80,6 +80,10 @@ namespace ClientApi.Services
                 product.Color = productDto.Color;
                 product.Condition = productDto.Condition;
                 product.SellPrice = productDto.SellPrice;
+                product.Price = productDto.Price;
+                product.CategoryId = productDto.CategoryId;
+                product.DesignerId = productDto.DesignerId;
+                product.EditId = productDto.EditId;
                 product.RentPrice4Days = productDto.RentPrice4Days;
                 product.RentPrice8Days = productDto.RentPrice8Days;
                 product.RentPrice16Days = productDto.RentPrice16Days;

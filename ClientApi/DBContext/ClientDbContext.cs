@@ -23,6 +23,8 @@ public partial class ClientDbContext : DbContext
 
     public virtual DbSet<ProductDesigner> ProductDesigners { get; set; }
 
+    public virtual DbSet<ProductEdit> ProductEdits { get; set; }
+
     public virtual DbSet<ProductImage> ProductImages { get; set; }
 
     public virtual DbSet<ProductType> ProductTypes { get; set; }
@@ -65,6 +67,7 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.IsEbayStore).HasColumnName("IsEBayStore");
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Name).HasMaxLength(300);
+            entity.Property(e => e.Price).HasMaxLength(300);
             entity.Property(e => e.RentPrice16Days).HasMaxLength(300);
             entity.Property(e => e.RentPrice30Days).HasMaxLength(300);
             entity.Property(e => e.RentPrice4Days).HasMaxLength(300);
@@ -83,6 +86,10 @@ public partial class ClientDbContext : DbContext
                 .HasForeignKey(d => d.DesignerId)
                 .HasConstraintName("FK_Product_ProductDesigner");
 
+            entity.HasOne(d => d.Edit).WithMany(p => p.Products)
+                .HasForeignKey(d => d.EditId)
+                .HasConstraintName("FK_Product_ProductEdits");
+
             entity.HasOne(d => d.Type).WithMany(p => p.Products)
                 .HasForeignKey(d => d.TypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -99,6 +106,15 @@ public partial class ClientDbContext : DbContext
         });
 
         modelBuilder.Entity<ProductDesigner>(entity =>
+        {
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.Deleted).HasDefaultValueSql("((0))");
+            entity.Property(e => e.Detail).HasMaxLength(900);
+            entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.Name).HasMaxLength(300);
+        });
+
+        modelBuilder.Entity<ProductEdit>(entity =>
         {
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Deleted).HasDefaultValueSql("((0))");
