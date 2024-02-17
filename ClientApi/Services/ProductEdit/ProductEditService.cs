@@ -39,8 +39,8 @@ namespace ClientApi.Services
             var productEdit = await _context.ProductEdits.FindAsync(productEditId);
             if (productEdit == null)
                 return false;
-
-            _context.ProductEdits.Remove(productEdit);
+            productEdit.Deleted = true;
+            productEdit.DeletedDate = DateTime.Now;
             await _context.SaveChangesAsync();
 
             return true;
