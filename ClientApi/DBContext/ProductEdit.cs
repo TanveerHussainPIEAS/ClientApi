@@ -11,6 +11,8 @@ public partial class ProductEdit
 
     public string? Detail { get; set; }
 
+    public string? ImageUrl { get; set; }
+
     public bool? Deleted { get; set; }
 
     public DateTimeOffset? CreatedDate { get; set; }

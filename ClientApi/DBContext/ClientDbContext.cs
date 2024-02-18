@@ -119,6 +119,7 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Deleted).HasDefaultValueSql("((0))");
             entity.Property(e => e.Detail).HasMaxLength(900);
+            entity.Property(e => e.ImageUrl).HasMaxLength(900);
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Name).HasMaxLength(300);
         });

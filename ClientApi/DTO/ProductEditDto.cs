@@ -9,6 +9,7 @@
         public string? Detail { get; set; }
 
         public bool? Deleted { get; set; }
+        public string? ImageUrl { get; set; }
 
     }
 
