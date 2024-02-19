@@ -15,6 +15,8 @@ public partial class ClientDbContext : DbContext
     {
     }
 
+    public virtual DbSet<CartProduct> CartProducts { get; set; }
+
     public virtual DbSet<Country> Countries { get; set; }
 
     public virtual DbSet<Product> Products { get; set; }
@@ -35,12 +37,28 @@ public partial class ClientDbContext : DbContext
 
     public virtual DbSet<UserType> UserTypes { get; set; }
 
+    public virtual DbSet<WishListProduct> WishListProducts { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=CODESINC\\MSSQLSERVER01;Initial Catalog=ClientDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
+        => optionsBuilder.UseSqlServer("Data Source=CN-175;Initial Catalog=ClientDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<CartProduct>(entity =>
+        {
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.CartProducts)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_CartProducts_Product");
+
+            entity.HasOne(d => d.User).WithMany(p => p.CartProducts)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_CartProducts_User");
+        });
+
         modelBuilder.Entity<Country>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_Country");
@@ -64,6 +82,9 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.Color).HasMaxLength(300);
             entity.Property(e => e.Condition).HasMaxLength(300);
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.IsAvailable)
+                .IsRequired()
+                .HasDefaultValueSql("((1))");
             entity.Property(e => e.IsEbayStore).HasColumnName("IsEBayStore");
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Name).HasMaxLength(300);
@@ -202,6 +223,20 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Type).HasMaxLength(300);
+        });
+
+        modelBuilder.Entity<WishListProduct>(entity =>
+        {
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.WishListProducts)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_WishListProducts_Product");
+
+            entity.HasOne(d => d.User).WithMany(p => p.WishListProducts)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("FK_WishListProducts_User");
         });
 
         OnModelCreatingPartial(modelBuilder);

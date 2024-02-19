@@ -12,6 +12,8 @@ namespace ClientApi.Infrastructure.Configurations
             services.AddScoped<IProductTpeService, ProductTpeService>();
             services.AddScoped<IProductDesignerService, ProductDesignerService>();
             services.AddScoped<IProductEditService, ProductEditService>();
+            services.AddScoped<IWishListProductService, WishListProductService>();
+            services.AddScoped<ICartProductService, CartProductService>();
             // Add new Service here
         }
     }

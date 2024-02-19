@@ -47,6 +47,8 @@ public partial class Product
 
     public bool Deleted { get; set; }
 
+    public bool? IsAvailable { get; set; }
+
     public DateTimeOffset CreatedDate { get; set; }
 
     public DateTimeOffset ModifiedDate { get; set; }
@@ -59,6 +61,8 @@ public partial class Product
 
     public int? CreatedBy { get; set; }
 
+    public virtual ICollection<CartProduct> CartProducts { get; set; } = new List<CartProduct>();
+
     public virtual ProductCategory? Category { get; set; }
 
     public virtual ProductDesigner? Designer { get; set; }
@@ -68,4 +72,6 @@ public partial class Product
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 
     public virtual ProductType Type { get; set; } = null!;
+
+    public virtual ICollection<WishListProduct> WishListProducts { get; set; } = new List<WishListProduct>();
 }

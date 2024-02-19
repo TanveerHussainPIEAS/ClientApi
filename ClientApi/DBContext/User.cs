@@ -45,6 +45,8 @@ public partial class User
 
     public int? ModifiedBy { get; set; }
 
+    public virtual ICollection<CartProduct> CartProducts { get; set; } = new List<CartProduct>();
+
     public virtual UserPermission Permission { get; set; } = null!;
 
     public virtual UserType Type { get; set; } = null!;
@@ -54,4 +56,6 @@ public partial class User
     public virtual ICollection<UserPermission> UserPermissionDeletedByNavigations { get; set; } = new List<UserPermission>();
 
     public virtual ICollection<UserPermission> UserPermissionModifiedByNavigations { get; set; } = new List<UserPermission>();
+
+    public virtual ICollection<WishListProduct> WishListProducts { get; set; } = new List<WishListProduct>();
 }

@@ -18,6 +18,7 @@ namespace ClientApi.DTO
         public string Size { get; set; } = null!;
 
         public string Brand { get; set; } = null!;
+        public bool? IsAvailable { get; set; }
 
         public string Color { get; set; } = null!;
 

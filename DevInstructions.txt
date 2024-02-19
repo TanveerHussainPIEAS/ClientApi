@@ -18,3 +18,12 @@ insert into UserPermissions values(1,0,0,0,0,0,0,0,0,0,0,0,0,0,GETDATE(),GETDATE
 
 insert into ProductTypes values('Sell',0,GETDATE(),GETDATE(),null,null,null,null)
 
+
+
+Wish List
+
+Add to Card
+
+CheckOut
+
+Add To Back

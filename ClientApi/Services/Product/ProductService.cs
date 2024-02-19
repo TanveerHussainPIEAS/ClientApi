@@ -122,6 +122,7 @@ namespace ClientApi.Services
                 product.Name = productDto.Name;
                 product.Size = productDto.Size;
                 product.Brand = productDto.Brand;
+                product.IsAvailable = productDto.IsAvailable;
                 product.Color = productDto.Color;
                 product.Condition = productDto.Condition;
                 product.SellPrice = productDto.SellPrice;
