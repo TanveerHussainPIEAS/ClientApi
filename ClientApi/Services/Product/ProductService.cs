@@ -19,7 +19,7 @@ namespace ClientApi.Services
         }
         public async Task<ProductDto> GetProduct(int userId)
         {
-            var user = await _context.Products.Where(u => u.Id == userId).FirstOrDefaultAsync();
+            var user = await _context.Products.Include(p => p.ProductImages).Where(u => u.Id == userId).FirstOrDefaultAsync();
             var userDto = mapper.Map<ProductDto>(user);
             return userDto;
         }
