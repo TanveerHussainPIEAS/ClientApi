@@ -9,6 +9,8 @@ public partial class Product
 
     public int TypeId { get; set; }
 
+    public int? ProductGenCategoryId { get; set; }
+
     public int? CategoryId { get; set; }
 
     public int? DesignerId { get; set; }
@@ -20,6 +22,8 @@ public partial class Product
     public string? Price { get; set; }
 
     public string Size { get; set; } = null!;
+
+    public string? InternationalSize { get; set; }
 
     public string Brand { get; set; } = null!;
 
@@ -68,6 +72,8 @@ public partial class Product
     public virtual ProductDesigner? Designer { get; set; }
 
     public virtual ProductEdit? Edit { get; set; }
+
+    public virtual ProductGenCategory? ProductGenCategory { get; set; }
 
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 

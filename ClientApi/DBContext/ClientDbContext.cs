@@ -27,6 +27,8 @@ public partial class ClientDbContext : DbContext
 
     public virtual DbSet<ProductEdit> ProductEdits { get; set; }
 
+    public virtual DbSet<ProductGenCategory> ProductGenCategories { get; set; }
+
     public virtual DbSet<ProductImage> ProductImages { get; set; }
 
     public virtual DbSet<ProductType> ProductTypes { get; set; }
@@ -82,6 +84,7 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.Color).HasMaxLength(300);
             entity.Property(e => e.Condition).HasMaxLength(300);
             entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.InternationalSize).HasMaxLength(300);
             entity.Property(e => e.IsAvailable)
                 .IsRequired()
                 .HasDefaultValueSql("((1))");
@@ -110,6 +113,10 @@ public partial class ClientDbContext : DbContext
             entity.HasOne(d => d.Edit).WithMany(p => p.Products)
                 .HasForeignKey(d => d.EditId)
                 .HasConstraintName("FK_Product_ProductEdits");
+
+            entity.HasOne(d => d.ProductGenCategory).WithMany(p => p.Products)
+                .HasForeignKey(d => d.ProductGenCategoryId)
+                .HasConstraintName("FK_Product_ProductGenCategory");
 
             entity.HasOne(d => d.Type).WithMany(p => p.Products)
                 .HasForeignKey(d => d.TypeId)
@@ -143,6 +150,15 @@ public partial class ClientDbContext : DbContext
             entity.Property(e => e.ImageUrl).HasMaxLength(900);
             entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
             entity.Property(e => e.Name).HasMaxLength(300);
+        });
+
+        modelBuilder.Entity<ProductGenCategory>(entity =>
+        {
+            entity.ToTable("ProductGenCategory");
+
+            entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.ModifiedDate).HasDefaultValueSql("(getutcdate())");
+            entity.Property(e => e.Type).HasMaxLength(300);
         });
 
         modelBuilder.Entity<ProductImage>(entity =>

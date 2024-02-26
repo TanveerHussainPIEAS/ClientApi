@@ -124,10 +124,12 @@ namespace ClientApi.Services
                 product.Brand = productDto.Brand;
                 product.IsAvailable = productDto.IsAvailable;
                 product.Color = productDto.Color;
-                product.Condition = productDto.Condition;
+                product.Color = productDto.Color;
+                product.InternationalSize = productDto.InternationalSize;
                 product.SellPrice = productDto.SellPrice;
                 product.Price = productDto.Price;
                 product.CategoryId = productDto.CategoryId;
+                product.ProductGenCategoryId = productDto.ProductGenCategoryId;
                 product.DesignerId = productDto.DesignerId;
                 product.EditId = productDto.EditId;
                 product.RentPrice4Days = productDto.RentPrice4Days;

@@ -9,6 +9,7 @@ namespace ClientApi.DTO
         public int TypeId { get; set; }
 
         public int? CategoryId { get; set; }
+        public int? ProductGenCategoryId { get; set; }
 
         public int? DesignerId { get; set; }
         public int? EditId { get; set; }
@@ -21,6 +22,7 @@ namespace ClientApi.DTO
         public bool? IsAvailable { get; set; }
 
         public string Color { get; set; } = null!;
+        public string? InternationalSize { get; set; }
 
         public string Condition { get; set; } = null!;
 
