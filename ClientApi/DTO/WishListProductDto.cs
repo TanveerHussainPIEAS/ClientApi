@@ -9,10 +9,5 @@ namespace ClientApi.DTO
 
         public int? UserId { get; set; }
 
-        public bool Deleted { get; set; }
-
-        public DateTimeOffset CreatedDate { get; set; }
-
-        public ProductDto Product { get; set; } = null!;
     }
 }

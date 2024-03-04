@@ -51,7 +51,7 @@ namespace ClientApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveWishListProduct([FromBody] List<WishListProductDto> wishListProductDtos)
+        public async Task<IActionResult> SaveWishListProduct([FromBody] WishListProductDto wishListProductDtos)
         {
             try
             {
