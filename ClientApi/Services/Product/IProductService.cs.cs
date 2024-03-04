@@ -8,6 +8,8 @@ namespace ClientApi.Services
         Task<bool> DeteleProduct(int productId);
         Task<List<ProductDto>> GetProducts();
         Task<List<ProductDto>> GetProductsByCatogeryId(int catogeryId);
+
+        Task<List<ProductDto>> GetProductsByGenCatogeryId(int catogeryId);
         Task<List<ProductDto>> GetProductsByDesignerId(int designerId);
         Task<List<ProductDto>> GetProductsByTypeId(int typeId);
         Task<List<ProductDto>> GetProductsByEditId(int editId);

@@ -38,7 +38,9 @@ namespace ClientApi.Services
         {
             var category = _mapper.Map<ProductCategory>(productCategoryDto);
             category.CreatedDate = DateTime.Now;
+            category.Deleted = false;
             _context.ProductCategories.Add(category);
+
             await _context.SaveChangesAsync();
             return true;
         }
@@ -51,6 +53,7 @@ namespace ClientApi.Services
 
             _mapper.Map(productCategoryDto, category);
             category.ModifiedDate = DateTime.Now;
+            category.Deleted = false;
             await _context.SaveChangesAsync();
             return true;
         }

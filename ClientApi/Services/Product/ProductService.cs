@@ -58,6 +58,17 @@ namespace ClientApi.Services
             return productsDto;
         }
 
+        public async Task<List<ProductDto>> GetProductsByGenCatogeryId(int catogeryId)
+        {
+            var products = await _context.Products
+                .Include(p => p.ProductImages)
+                .Where(p => p.ProductGenCategoryId == catogeryId && p.Deleted == false)
+                .ToListAsync();
+
+            var productsDto = mapper.Map<List<ProductDto>>(products);
+            return productsDto;
+        }
+
         public async Task<List<ProductDto>> GetProductsByDesignerId(int designerId)
         {
             var products = await _context.Products

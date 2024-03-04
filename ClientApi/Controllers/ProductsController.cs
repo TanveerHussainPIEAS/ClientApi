@@ -45,6 +45,21 @@ namespace ClientApi.Controllers
             }
         }
 
+
+        [HttpGet("catogery-Gen/{catogeryId}")]
+        public async Task<IActionResult> GetProductsByGenCatogeryId(int catogeryId)
+        {
+            try
+            {
+                var result = await _productService.GetProductsByGenCatogeryId(catogeryId);
+                return OkResult(result);
+            }
+            catch (Exception ex)
+            {
+                return ServerErrorResult();
+            }
+        }
+
         [HttpGet("designer/{designerId}")]
         public async Task<IActionResult> GetProductsByDesignerId(int designerId)
         {

@@ -13,6 +13,5 @@ namespace ClientApi.DTO
 
         public DateTimeOffset CreatedDate { get; set; }
 
-        public ProductDto Product { get; set; } = null!;
     }
 }
