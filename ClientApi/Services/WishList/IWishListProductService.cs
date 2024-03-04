@@ -8,6 +8,6 @@ namespace ClientApi.Services
     {
         Task<bool> DeleteWishListProduct(int wishListProductId);
         Task<List<WishListProductDto>> GetWishListProducts(int userId);
-        Task<bool> SaveWishListProduct(List<WishListProductDto> wishListProductDtos);
+        Task<bool> SaveWishListProduct(WishListProductDto wishListProductDtos);
     }
 }

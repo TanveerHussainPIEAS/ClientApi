@@ -39,11 +39,10 @@ namespace ClientApi.Services
             return _mapper.Map<List<WishListProductDto>>(products);
         }
 
-        public async Task<bool> SaveWishListProduct(List<WishListProductDto> wishListProductDtos)
+        public async Task<bool> SaveWishListProduct(WishListProductDto product)
         {            
-            var items = new List<WishListProduct>();
-            foreach (var product in wishListProductDtos)
-            {
+            var item = new WishListProduct();
+            
                 var cartItem = new WishListProduct
                 {
                     CreatedDate = DateTimeOffset.Now,
@@ -51,10 +50,9 @@ namespace ClientApi.Services
                     ProductId = product.ProductId,
                     UserId = product.UserId
                 };
-                items.Add(cartItem);
-            }
+               
 
-            await _context.WishListProducts.AddRangeAsync(items);
+            await _context.WishListProducts.AddAsync(cartItem);
             await _context.SaveChangesAsync();
 
             return true;
