@@ -18,11 +18,11 @@ namespace ClientApi.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts(string size, string price, string internationalPrice, string brand, string color, string sellPrice, string rentPrice)
         {
             try
             {
-                var result = await _productService.GetProducts();
+                var result = await _productService.GetProducts(size, price, internationalPrice, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -32,11 +32,11 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("catogery/{catogeryId}")]
-        public async Task<IActionResult> GetProductsByCatogeryId(int catogeryId)
+        public async Task<IActionResult> GetProductsByCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             try
             {
-                var result = await _productService.GetProductsByCatogeryId(catogeryId);
+                var result = await _productService.GetProductsByCatogeryId(catogeryId,  size,  price,  internationalSize,  brand,  color,  sellPrice,  rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -47,11 +47,11 @@ namespace ClientApi.Controllers
 
 
         [HttpGet("catogery-Gen/{catogeryId}")]
-        public async Task<IActionResult> GetProductsByGenCatogeryId(int catogeryId)
+        public async Task<IActionResult> GetProductsByGenCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             try
             {
-                var result = await _productService.GetProductsByGenCatogeryId(catogeryId);
+                var result = await _productService.GetProductsByGenCatogeryId(catogeryId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -61,11 +61,11 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("designer/{designerId}")]
-        public async Task<IActionResult> GetProductsByDesignerId(int designerId)
+        public async Task<IActionResult> GetProductsByDesignerId(int designerId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             try
             {
-                var result = await _productService.GetProductsByDesignerId(designerId);
+                var result = await _productService.GetProductsByDesignerId(designerId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -75,11 +75,11 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("type/{typeId}")]
-        public async Task<IActionResult> GetProductsByTypeId(int typeId)
+        public async Task<IActionResult> GetProductsByTypeId(int typeId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             try
             {
-                var result = await _productService.GetProductsByTypeId(typeId);
+                var result = await _productService.GetProductsByTypeId(typeId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -89,11 +89,11 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("edit/{editId}")]
-        public async Task<IActionResult> GetProductsByEditId(int editId)
+        public async Task<IActionResult> GetProductsByEditId(int editId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             try
             {
-                var result = await _productService.GetProductsByEditId(editId);
+                var result = await _productService.GetProductsByEditId(editId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)

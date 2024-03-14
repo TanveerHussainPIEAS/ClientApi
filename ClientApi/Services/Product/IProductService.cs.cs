@@ -6,13 +6,13 @@ namespace ClientApi.Services
     {
         Task<ProductDto> GetProduct(int productId);
         Task<bool> DeteleProduct(int productId);
-        Task<List<ProductDto>> GetProducts();
-        Task<List<ProductDto>> GetProductsByCatogeryId(int catogeryId);
+        Task<List<ProductDto>> GetProducts(string size, string price,string internationalPrice, string brand, string color, string sellPrice, string rentPrice);
+        Task<List<ProductDto>> GetProductsByCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice);
 
-        Task<List<ProductDto>> GetProductsByGenCatogeryId(int catogeryId);
-        Task<List<ProductDto>> GetProductsByDesignerId(int designerId);
-        Task<List<ProductDto>> GetProductsByTypeId(int typeId);
-        Task<List<ProductDto>> GetProductsByEditId(int editId);
+        Task<List<ProductDto>> GetProductsByGenCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice);
+        Task<List<ProductDto>> GetProductsByDesignerId(int designerId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice);
+        Task<List<ProductDto>> GetProductsByTypeId(int typeId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice);
+        Task<List<ProductDto>> GetProductsByEditId(int editId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice);
         Task<bool> SaveProduct(ProductDto userDto);
         Task<bool> UpdateProduct(ProductDto userDto);
     }

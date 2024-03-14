@@ -4,6 +4,7 @@ using ClientApi.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using BCrypt.Net;
+using System.Drawing;
 
 namespace ClientApi.Services
 {
@@ -36,66 +37,144 @@ namespace ClientApi.Services
             return isDeleted;
         }
 
-        public async Task<List<ProductDto>> GetProducts()
+        public async Task<List<ProductDto>> GetProducts(string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
-                .Where(p => p.Deleted == false)
+                .Where(p 
+                    => p.Deleted == false
+                    &&
+                    ( p.Size.ToLower().Contains(size.ToLower())
+                      || p.Price.ToLower().Contains(price.ToLower())
+                      || p.InternationalSize.ToLower().Contains(internationalSize.ToLower())
+                      || p.Brand.ToLower().Contains(brand.ToLower())
+                      || p.Color.ToLower().Contains(color.ToLower())
+                      || p.SellPrice.ToLower().Contains(sellPrice.ToLower())
+                      || p.RentPrice4Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice8Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice16Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice30Days.ToLower().Contains(rentPrice.ToLower())
+                    ) )
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
             return productsDto;
         }
 
-        public async Task<List<ProductDto>> GetProductsByCatogeryId(int catogeryId)
+        public async Task<List<ProductDto>> GetProductsByCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
-                .Where(p => p.CategoryId == catogeryId && p.Deleted == false)
+                .Where(p => p.CategoryId == catogeryId && p.Deleted == false
+                &&
+                    (p.Size.ToLower().Contains(size.ToLower())
+                      || p.Price.ToLower().Contains(price.ToLower())
+                      || p.InternationalSize.ToLower().Contains(internationalSize.ToLower())
+                      || p.Brand.ToLower().Contains(brand.ToLower())
+                      || p.Color.ToLower().Contains(color.ToLower())
+                      || p.SellPrice.ToLower().Contains(sellPrice.ToLower())
+                      || p.RentPrice4Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice8Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice16Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice30Days.ToLower().Contains(rentPrice.ToLower())
+                    )
+                )
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
             return productsDto;
         }
 
-        public async Task<List<ProductDto>> GetProductsByGenCatogeryId(int catogeryId)
+        public async Task<List<ProductDto>> GetProductsByGenCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
-                .Where(p => p.ProductGenCategoryId == catogeryId && p.Deleted == false)
+                .Where(p => p.ProductGenCategoryId == catogeryId && p.Deleted == false
+                &&
+                    (p.Size.ToLower().Contains(size.ToLower())
+                      || p.Price.ToLower().Contains(price.ToLower())
+                      || p.InternationalSize.ToLower().Contains(internationalSize.ToLower())
+                      || p.Brand.ToLower().Contains(brand.ToLower())
+                      || p.Color.ToLower().Contains(color.ToLower())
+                      || p.SellPrice.ToLower().Contains(sellPrice.ToLower())
+                      || p.RentPrice4Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice8Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice16Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice30Days.ToLower().Contains(rentPrice.ToLower())
+                    )
+                )
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
             return productsDto;
         }
 
-        public async Task<List<ProductDto>> GetProductsByDesignerId(int designerId)
+        public async Task<List<ProductDto>> GetProductsByDesignerId(int designerId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             var products = await _context.Products
                 .Include(p => p.ProductImages)
-                .Where(p => p.DesignerId == designerId && p.Deleted == false)
+                .Where(p => p.DesignerId == designerId && p.Deleted == false
+                &&
+                    (p.Size.ToLower().Contains(size.ToLower())
+                      || p.Price.ToLower().Contains(price.ToLower())
+                      || p.InternationalSize.ToLower().Contains(internationalSize.ToLower())
+                      || p.Brand.ToLower().Contains(brand.ToLower())
+                      || p.Color.ToLower().Contains(color.ToLower())
+                      || p.SellPrice.ToLower().Contains(sellPrice.ToLower())
+                      || p.RentPrice4Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice8Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice16Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice30Days.ToLower().Contains(rentPrice.ToLower())
+                    )
+                )
                 .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
             return productsDto;
         }
 
-        public async Task<List<ProductDto>> GetProductsByTypeId(int typeId)
+        public async Task<List<ProductDto>> GetProductsByTypeId(int typeId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             var products = await _context.Products
                  .Include(p => p.ProductImages)
-                 .Where(p => p.TypeId == typeId && p.Deleted == false)
+                 .Where(p => p.TypeId == typeId && p.Deleted == false
+                 &&
+                    (p.Size.ToLower().Contains(size.ToLower())
+                      || p.Price.ToLower().Contains(price.ToLower())
+                      || p.InternationalSize.ToLower().Contains(internationalSize.ToLower())
+                      || p.Brand.ToLower().Contains(brand.ToLower())
+                      || p.Color.ToLower().Contains(color.ToLower())
+                      || p.SellPrice.ToLower().Contains(sellPrice.ToLower())
+                      || p.RentPrice4Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice8Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice16Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice30Days.ToLower().Contains(rentPrice.ToLower())
+                    )
+                 )
                  .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
             return productsDto;
         }
 
-        public async Task<List<ProductDto>> GetProductsByEditId(int editId)
+        public async Task<List<ProductDto>> GetProductsByEditId(int editId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
         {
             var products = await _context.Products
                  .Include(p => p.ProductImages)
-                 .Where(p => p.EditId == editId && p.Deleted == false)
+                 .Where(p => p.EditId == editId && p.Deleted == false
+                 &&
+                    (p.Size.ToLower().Contains(size.ToLower())
+                      || p.Price.ToLower().Contains(price.ToLower())
+                      || p.InternationalSize.ToLower().Contains(internationalSize.ToLower())
+                      || p.Brand.ToLower().Contains(brand.ToLower())
+                      || p.Color.ToLower().Contains(color.ToLower())
+                      || p.SellPrice.ToLower().Contains(sellPrice.ToLower())
+                      || p.RentPrice4Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice8Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice16Days.ToLower().Contains(rentPrice.ToLower())
+                      || p.RentPrice30Days.ToLower().Contains(rentPrice.ToLower())
+                    )
+                 )
                  .ToListAsync();
 
             var productsDto = mapper.Map<List<ProductDto>>(products);
