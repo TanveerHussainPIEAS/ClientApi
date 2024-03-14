@@ -18,10 +18,19 @@ namespace ClientApi.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts(string size, string price, string internationalPrice, string brand, string color, string sellPrice, string rentPrice)
+        public async Task<IActionResult> GetProducts(string? size, string? price , string? internationalPrice , string? brand  , string? color , string? sellPrice , string? rentPrice )
         {
             try
             {
+
+                // Convert null values to empty strings
+                size ??= "";
+                price ??= "";
+                internationalPrice ??= "";
+                brand ??= "";
+                color ??= "";
+                sellPrice ??= "";
+                rentPrice ??= "";
                 var result = await _productService.GetProducts(size, price, internationalPrice, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
@@ -32,11 +41,20 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("catogery/{catogeryId}")]
-        public async Task<IActionResult> GetProductsByCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
+        public async Task<IActionResult> GetProductsByCatogeryId(int catogeryId, string? size, string? price, string? internationalSize, string? brand, string? color, string? sellPrice, string? rentPrice)
         {
             try
             {
-                var result = await _productService.GetProductsByCatogeryId(catogeryId,  size,  price,  internationalSize,  brand,  color,  sellPrice,  rentPrice);
+                // Convert null values to empty strings
+                size ??= "";
+                price ??= "";
+                internationalSize ??= "";
+                brand ??= "";
+                color ??= "";
+                sellPrice ??= "";
+                rentPrice ??= "";
+
+                var result = await _productService.GetProductsByCatogeryId(catogeryId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
             catch (Exception ex)
@@ -47,10 +65,19 @@ namespace ClientApi.Controllers
 
 
         [HttpGet("catogery-Gen/{catogeryId}")]
-        public async Task<IActionResult> GetProductsByGenCatogeryId(int catogeryId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
+        public async Task<IActionResult> GetProductsByGenCatogeryId(int catogeryId, string? size, string? price, string? internationalSize, string? brand, string? color, string? sellPrice, string? rentPrice)
         {
             try
             {
+                // Convert null values to empty strings
+                size ??= "";
+                price ??= "";
+                internationalSize ??= "";
+                brand ??= "";
+                color ??= "";
+                sellPrice ??= "";
+                rentPrice ??= "";
+
                 var result = await _productService.GetProductsByGenCatogeryId(catogeryId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
@@ -61,10 +88,19 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("designer/{designerId}")]
-        public async Task<IActionResult> GetProductsByDesignerId(int designerId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
+        public async Task<IActionResult> GetProductsByDesignerId(int designerId, string? size, string? price, string? internationalSize, string? brand, string? color, string? sellPrice, string? rentPrice)
         {
             try
             {
+                // Convert null values to empty strings
+                size ??= "";
+                price ??= "";
+                internationalSize ??= "";
+                brand ??= "";
+                color ??= "";
+                sellPrice ??= "";
+                rentPrice ??= "";
+
                 var result = await _productService.GetProductsByDesignerId(designerId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
@@ -75,10 +111,19 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("type/{typeId}")]
-        public async Task<IActionResult> GetProductsByTypeId(int typeId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
+        public async Task<IActionResult> GetProductsByTypeId(int typeId, string? size, string? price, string? internationalSize, string? brand, string? color, string? sellPrice, string? rentPrice)
         {
             try
             {
+                // Convert null values to empty strings
+                size ??= "";
+                price ??= "";
+                internationalSize ??= "";
+                brand ??= "";
+                color ??= "";
+                sellPrice ??= "";
+                rentPrice ??= "";
+
                 var result = await _productService.GetProductsByTypeId(typeId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
@@ -89,10 +134,19 @@ namespace ClientApi.Controllers
         }
 
         [HttpGet("edit/{editId}")]
-        public async Task<IActionResult> GetProductsByEditId(int editId, string size, string price, string internationalSize, string brand, string color, string sellPrice, string rentPrice)
+        public async Task<IActionResult> GetProductsByEditId(int editId, string? size, string? price, string? internationalSize, string? brand, string? color, string? sellPrice, string? rentPrice)
         {
             try
             {
+                // Convert null values to empty strings
+                size ??= "";
+                price ??= "";
+                internationalSize ??= "";
+                brand ??= "";
+                color ??= "";
+                sellPrice ??= "";
+                rentPrice ??= "";
+
                 var result = await _productService.GetProductsByEditId(editId, size, price, internationalSize, brand, color, sellPrice, rentPrice);
                 return OkResult(result);
             }
